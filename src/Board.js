@@ -193,7 +193,7 @@
           return true
         }
       }
-      return false
+      return false;
     }
 
     /*--------------------  End of Helper Functions  ---------------------*/
