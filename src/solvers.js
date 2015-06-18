@@ -40,8 +40,12 @@ window.countNRooksSolutions = function(n) {
 
   var newBoard = new Board({"n":n})
   var solutionCount = 0;
+  var j = 0;
   //var rookCount = 0
-  var recurse(i) {
+
+  if (n===2) {debugger;}
+  var recursion = function(i, j) {
+    // j = j || 0;
     //with the exception of the last layer, toggle off (i,j) ONLY when
     if (i===n-1) { //if its reached the last row
       newBoard.togglePiece(i,j);
@@ -55,18 +59,19 @@ window.countNRooksSolutions = function(n) {
         return
       }
     }
-
     newBoard.togglePiece(i,j)
+
+
     for (var j = 0; j < n; j++) { // for each column
-    //turn it on
-      recursion(i+1)
+      recursion(i+1, j)
     }  //turn it off
-    newBoard.togglePiece(i,j) //turn it off
-    if (j>0 ) {
-      newBoard.togglePiece(i,j-1);
-    }
+    //j=0;
+    newBoard.clearRow(i)
   }
-  recursion(0)
+
+  for (var j = 0; j < n; j++) {
+    recursion(0,j)
+  }
   return solutionCount
 
   console.log('Number of solutions for ' + n + ' rooks:', solutionCount);

@@ -60,6 +60,14 @@
         0 <= colIndex && colIndex < this.get('n')
       );
     },
+    clearRow: function(i) {
+      var matrix= this.rows()
+      for (var j = 0; j < matrix[i].length; j++) {
+        if (matrix[i][j]>0) {
+          this.togglePiece(i,j)
+        }
+      }
+    },
 
 
 /*
